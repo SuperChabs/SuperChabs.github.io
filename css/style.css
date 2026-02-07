@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background: #111;
+    color: #eee;
+}
+
+header {
+    background: #222;
+    padding: 10px;
+}
+
+nav a {
+    color: #eee;
+    margin-right: 15px;
+    text-decoration: none;
+}
+
+nav a:hover {
+    text-decoration: underline;
+}
+
+main {
+    padding: 20px;
+}
+
+section {
+    margin-bottom: 30px;
+}
+
+h2 {
+    margin-bottom: 8px;
+    color: #7fdcff;
+}
+
+ul {
+    margin-top: 0;
+}
