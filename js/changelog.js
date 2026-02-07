@@ -1,19 +1,26 @@
-const root = document.getElementById("changelog");
+async function loadChangelog() 
+{
+    const container = document.getElementById('changelog');
+    const md = window.markdownit();
 
-for (const entry of window.CHANGELOG) {
-    const section = document.createElement("section");
+    try 
+    {
+        const response = await fetch('data/changelog.md');
+        
+        if (!response.ok) 
+        {
+            throw new Error('Failed to load file changelog.md');
+        }
 
-    const h2 = document.createElement("h2");
-    h2.textContent = `v${entry.version} — ${entry.date}`;
+        const markdownText = await response.text();
 
-    const ul = document.createElement("ul");
-    for (const c of entry.changes) {
-        const li = document.createElement("li");
-        li.textContent = c;
-        ul.appendChild(li);
+        container.innerHTML += md.render(markdownText);
+    } 
+    catch (error) 
+    {
+        console.error('Error:', error);
+        container.innerHTML += `<p style="color: red;">Failed to load changelog</p>`;
     }
-
-    section.appendChild(h2);
-    section.appendChild(ul);
-    root.appendChild(section);
 }
+
+document.addEventListener("DOMContentLoaded", loadChangelog);
